@@ -1,96 +1,84 @@
 # 3Denary
 
-An e-commerce web application dedicated to numismatics (coins, banknotes, collectibles), built on top of the Bagisto platform and customized with dedicated views and components.
+A customized e-commerce platform for numismatics built on top of Bagisto (Laravel-based).  
+The project focuses on extending and adapting an existing enterprise-level e-commerce framework to a specialized collectible market.
 
 ## Author
 Aleksandra Reja
 
 ---
 
-## About the Project
+## Project Overview
 
-**3Denary** is an online store focused on numismatic products.  
-The project is based on the Bagisto e-commerce framework (Laravel-based) and has been extended with custom views and additional frontend components to better support the specific needs of a numismatic store.
+**3Denary** is a domain-specific e-commerce application designed for selling numismatic products (coins, banknotes, collectibles).
 
-The goal of this project was to adapt a general-purpose e-commerce system to a specialized industry by redesigning UI elements, adjusting product presentation, and tailoring the shopping experience to collectors.
+The project is based on the Bagisto framework but significantly customized at the presentation and storefront level.  
+The goal was to transform a general-purpose e-commerce engine into a niche-oriented platform with improved UX and tailored product representation.
 
----
+This project demonstrates:
 
-## Features
-
-### Customer
-
-- user registration and authentication  
-- browsing categorized numismatic products  
-- detailed product view (customized layout for collectibles)  
-- shopping cart and checkout process  
-- order history and account management  
-- responsive design adapted to collectors' needs  
-
-### Administrator
-
-- admin dashboard (Bagisto admin panel)  
-- product management (coins, banknotes, collectible items)  
-- category management  
-- inventory management  
-- order management  
-- customer management  
-- store configuration and settings  
+- working with large Laravel-based systems
+- understanding modular e-commerce architecture
+- extending and overriding framework views
+- adapting UI/UX to domain-specific requirements
+- frontend customization using Blade and modern build tools
 
 ---
 
-## Customizations (Compared to Default Bagisto)
+## Key Responsibilities & Technical Work
 
-This project extends the default Bagisto installation with:
-
-- customized Blade views  
-- modified storefront layout  
-- dedicated UI components for product presentation  
-- styling adjustments tailored to numismatics  
-- refined product detail structure for collectible items  
-- visual and UX improvements for a niche e-commerce domain  
-
-The core e-commerce logic is provided by Bagisto, while the presentation layer and user experience have been significantly customized.
+- Customization of Bagisto storefront views
+- Modification of Blade templates and theme structure
+- Implementation of dedicated UI components for collectible products
+- Adjustments to product detail layout and presentation logic
+- Styling and frontend improvements tailored to numismatics
+- Configuration and environment setup (Laravel, MySQL, Vite)
+- Working within Bagisto’s modular package architecture
 
 ---
 
-## Technologies
+## Core Features
 
-- Server side: Laravel (via Bagisto) – PHP 8+  
-- E-commerce engine: Bagisto  
-- Database: MySQL  
-- ORM: Eloquent  
-- Client side: Blade templates  
-- Build tool: Vite  
-- Styling: TailwindCSS / custom CSS  
-- Authentication & admin system: Bagisto built-in modules  
+### Customer Side
 
----
+- User registration and authentication
+- Category-based browsing of numismatic products
+- Customized product detail pages
+- Shopping cart and checkout process
+- Order history and account management
+- Responsive layout
 
-## Architecture Overview
+### Administrator Side
 
-The application follows a standard Laravel + Bagisto architecture:
-
-- `packages/` – Bagisto core packages  
-- `resources/themes/` – customized storefront views  
-- `routes/` – web and API routes  
-- `app/` – Laravel application logic  
-- `.env` – environment configuration  
-
-The project preserves Bagisto’s modular structure while extending the frontend layer to provide a domain-specific interface for numismatics.
+- Product management (coins, banknotes, collectibles)
+- Category and inventory management
+- Order management
+- Customer management
+- Store configuration via admin panel
 
 ---
 
-## Requirements
+## Technical Stack
 
-Versions used during development (compatibility with earlier versions not guaranteed):
+- **Backend:** Laravel (via Bagisto)
+- **Language:** PHP 8+
+- **Database:** MySQL
+- **ORM:** Eloquent
+- **Frontend:** Blade templates
+- **Build Tool:** Vite
+- **Styling:** TailwindCSS / Custom CSS
+- **Architecture:** Modular Laravel package-based system (Bagisto)
 
-- PHP 8.1+  
-- Composer 2.x  
-- MySQL 8+  
-- Node.js 18+  
-- npm  
-- Apache or Nginx  
+---
+
+## What This Project Demonstrates
+
+- Ability to work with and extend an enterprise-level open-source e-commerce platform
+- Understanding of Laravel architecture and Blade templating
+- Frontend customization within an existing framework
+- Separation of core logic and presentation layer
+- Environment configuration and full-stack project setup
+- Practical experience with real-world e-commerce structure
 
 ---
 
