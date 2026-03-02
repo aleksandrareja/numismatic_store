@@ -202,13 +202,13 @@
                     <ul class="pb-3 text-base text-gray-700">
                         <template v-if="options.length">
                             <li
-                                :key="`filter_${filter.id}_option_ ${option.id}`"
+                                :key="`${filter.id}_${option.id}`"
                                 v-for="(option, optionIndex) in options"
                             >
                                 <div class="flex select-none items-center">
                                     <input
                                         type="checkbox"
-                                        :id="`filter_${filter.id}_option_ ${option.id}`"
+                                        :id="`filter_${filter.id}_option_${option.id}`"
                                         class="peer hidden"
                                         :value="option.id"
                                         v-model="appliedValues"
@@ -222,14 +222,14 @@
                                         :aria-label="option.name"
                                         :aria-labelledby="'label_option_' + option.id"
                                         tabindex="0"
-                                        :for="`filter_${filter.id}_option_ ${option.id}`"
+                                        :for="`filter_${filter.id}_option_${option.id}`"
                                     >
                                     </label>
 
                                     <label
-                                        class="w-full font-semibold uppercase cursor-pointer p-2 text-sm text-gray-900 max-sm:p-1 max-sm:text-xs ltr:pl-0 rtl:pr-0"
+                                        class="w-full cursor-pointer p-2 text-sm text-gray-900 max-sm:p-1 max-sm:text-xs ltr:pl-0 rtl:pr-0"
                                         :id="'label_option_' + option.id"
-                                        :for="`filter_${filter.id}_option_ ${option.id}`"
+                                        :for="`filter_${filter.id}_option_${option.id}`"
                                         role="button"
                                         tabindex="0"
                                     >
