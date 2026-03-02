@@ -146,7 +146,7 @@
             <!-- Filter Item Header -->
             <x-slot:header class="px-0 py-2.5 max-sm:!pb-1.5">
                 <div class="flex items-center justify-between">
-                    <p class="text-[11px] font-semibold uppercase tracking-[2px] text-stone-900">
+                    <p class="text-lg font-semibold max-sm:text-base max-sm:font-medium">
                         @{{ filter.name }}
                     </p>
                 </div>
@@ -199,27 +199,37 @@
                     </div> -->
 
                     <!-- Filter Options -->
-                    <ul class="pb-3">
+                    <ul class="pb-3 text-base text-gray-700">
                         <template v-if="options.length">
                             <li
-                                :key="`${filter.id}_${option.id}`"
+                                :key="`${filter.id}_ ${option.id}`"
                                 v-for="(option, optionIndex) in options"
                             >
-                                <div class="flex select-none items-center">
+                                <div class="flex select-none items-center gap-x-4 rounded hover:bg-gray-100 max-sm:gap-x-1 max-sm:!p-0 ltr:pl-2 rtl:pr-2">
                                     <input
                                         type="checkbox"
-                                        :id="`filter_${filter.id}_option_${option.id}`"
+                                        :id="`filter_${filter.id}_option_ ${option.id}`"
                                         class="peer hidden"
                                         :value="option.id"
                                         v-model="appliedValues"
                                         @change="applyValue"
                                     />
 
+                                    <label
+                                        class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-2xl text-navyBlue peer-checked:text-navyBlue max-sm:text-xl"
+                                        role="checkbox"
+                                        aria-checked="false"
+                                        :aria-label="option.name"
+                                        :aria-labelledby="'label_option_' + option.id"
+                                        tabindex="0"
+                                        :for="`filter_${filter.id}_option_ ${option.id}`"
+                                    >
+                                    </label>
 
                                     <label
-                                        class="cursor-pointer text-[10px] uppercase tracking-[1.5px] text-gray-400 transition-all duration-300 hover:text-stone-900 peer-checked:text-goldenOrange peer-checked:font-bold0"
+                                        class="w-full cursor-pointer p-2 text-sm text-gray-900 max-sm:p-1 max-sm:text-xs ltr:pl-0 rtl:pr-0"
                                         :id="'label_option_' + option.id"
-                                        :for="`filter_${filter.id}_option_${option.id}`"
+                                        :for="`filter_${filter.id}_option_ ${option.id}`"
                                         role="button"
                                         tabindex="0"
                                     >
@@ -231,7 +241,7 @@
 
                         <template v-else>
                             <li
-                                class="text-[10px] uppercase tracking-widest text-gray-400 py-2"
+                                class="flex flex-col items-center justify-center gap-2 py-2"
                                 v-if="! isLoadingMore"
                             >
                                 @lang('shop::app.categories.filters.search.no-options-available')
@@ -278,7 +288,7 @@
                     <div class="flex justify-center pb-3" v-if="meta && meta.current_page < meta.last_page">
                         <button
                             type="button"
-                            class="text-[10px] uppercase tracking-widest text-[#a38655] font-bold hover:underline"
+                            class="rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                             @click="loadMoreOptions"
                             :disabled="isLoadingMore"
                         >
