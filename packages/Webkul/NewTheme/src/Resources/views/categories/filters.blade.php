@@ -216,14 +216,11 @@
                                     />
 
                                     <label
-                                        class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-2xl text-navyBlue peer-checked:text-navyBlue max-sm:text-xl"
-                                        role="checkbox"
-                                        aria-checked="false"
-                                        :aria-label="option.name"
-                                        :aria-labelledby="'label_option_' + option.id"
-                                        tabindex="0"
+                                        class="cursor-pointer text-2xl text-navyBlue max-sm:text-xl"
                                         :for="`filter_${filter.id}_option_${option.id}`"
                                     >
+                                        <span class="icon-uncheck peer-checked:hidden"></span>
+                                        <span class="icon-check-box hidden peer-checked:inline"></span>
                                     </label>
 
                                     <label
