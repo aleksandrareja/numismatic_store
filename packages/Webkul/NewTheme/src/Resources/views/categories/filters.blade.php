@@ -207,6 +207,7 @@
                             >
                                 <div class="flex select-none items-center">
                                     <input
+                                        ref="checkbox"
                                         type="checkbox"
                                         :id="`filter_${filter.id}_option_${option.id}`"
                                         class="peer absolute opacity-0 pointer-events-none"
@@ -215,16 +216,14 @@
                                         @change="applyValue"
                                     />
 
-                                    <label
-                                        class="icon-uncheck peer-checked:icon-check-box cursor-pointer text-2xl text-navyBlue peer-checked:text-navyBlue max-sm:text-xl"
-                                        role="checkbox"
-                                        aria-checked="false"
-                                        :aria-label="option.name"
-                                        :aria-labelledby="'label_option_' + option.id"
-                                        tabindex="0"
-                                        :for="`filter_${filter.id}_option_${option.id}`"
+                                    <span
+                                        class="cursor-pointer text-2xl text-navyBlue max-sm:text-xl"
+                                        :class="appliedValues.includes(option.id)
+                                            ? 'icon-check-box'
+                                            : 'icon-uncheck'"
+                                        @click="$refs.checkbox?.click()"
                                     >
-                                    </label>
+                                    </span>
 
                                     <label
                                         class="w-full cursor-pointer p-2 text-sm text-gray-900 max-sm:p-1 max-sm:text-xs ltr:pl-0 rtl:pr-0"
