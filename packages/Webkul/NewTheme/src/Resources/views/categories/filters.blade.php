@@ -208,8 +208,8 @@
                                 <div class="flex select-none items-center">
                                     <input
                                         type="checkbox"
-                                        :id="`filter_${filter.id}_option_ ${option.id}`"
-                                        class="peer hidden"
+                                        :id="`filter_${filter.id}_option_${option.id}`"
+                                        class="peer absolute opacity-0 pointer-events-none"
                                         :value="option.id"
                                         v-model="appliedValues"
                                         @change="applyValue"
@@ -222,14 +222,14 @@
                                         :aria-label="option.name"
                                         :aria-labelledby="'label_option_' + option.id"
                                         tabindex="0"
-                                        :for="`filter_${filter.id}_option_ ${option.id}`"
+                                        :for="`filter_${filter.id}_option_${option.id}`"
                                     >
                                     </label>
 
                                     <label
                                         class="w-full cursor-pointer p-2 text-sm text-gray-900 max-sm:p-1 max-sm:text-xs ltr:pl-0 rtl:pr-0"
                                         :id="'label_option_' + option.id"
-                                        :for="`filter_${filter.id}_option_ ${option.id}`"
+                                        :for="`filter_${filter.id}_option_${option.id}`"
                                         role="button"
                                         tabindex="0"
                                     >
