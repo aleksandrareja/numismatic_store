@@ -199,6 +199,38 @@
 
                                 @include('shop::products.view.types.booking')
 
+                                <!-- Trust Badges -->
+                                <div class="mt-8 mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-600">
+
+                                    <!-- Bezpieczny zakup -->
+                                    <div class="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
+                                        <span class="icon-lock text-xl text-gray-700"></span>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Bezpieczny zakup</p>
+                                            <p class="text-xs text-gray-500">Szyfrowane płatności</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Zakup telefoniczny -->
+                                    <div class="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
+                                        <span class="icon-phone text-xl text-gray-700"></span>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Zakup telefoniczny</p>
+                                            <p class="text-xs text-gray-500">Bezpośredni kontakt</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ubezpieczona wysyłka -->
+                                    <div class="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
+                                        <span class="icon-truck text-xl text-gray-700"></span>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Ubezpieczona wysyłka</p>
+                                            <p class="text-xs text-gray-500">Bezpieczna dostawa</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <!-- Product Actions and Quantity Box -->
                                 <div class="mt-8 max-sm:mt-4 w-full">
 
