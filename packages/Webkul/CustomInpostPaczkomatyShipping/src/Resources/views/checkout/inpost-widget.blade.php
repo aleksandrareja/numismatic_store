@@ -75,7 +75,7 @@ app.component('v-inpost-widget', {
 
                 this.selectedLocker = station.name + ", " + station.address.line1;
 
-                this.$axios.post("{{ route('inpost.save_paczkomat') }}", {
+                this.$axios.post("{{ route('inpost.save_locker') }}", {
 
                     paczkomat_id: station.name,
 
