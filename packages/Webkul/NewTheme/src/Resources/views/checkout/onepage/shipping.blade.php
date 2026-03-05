@@ -90,6 +90,8 @@
 
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.after') !!}
                             </template>
+
+                            <v-inpost-widget :method="selectedMethod" v-if="selectedMethod === 'inpost_paczkomaty'"></v-inpost-widget>
                         </div>
                     </x-slot>
                 </x-shop::accordion>
@@ -114,6 +116,7 @@
             methods: {
                 store(selectedMethod) {
                     this.$emit('processing', 'payment');
+                    this.selectedMethod = selectedMethod;
 
                     this.$axios.post("{{ route('shop.checkout.onepage.shipping_methods.store') }}", {    
                             shipping_method: selectedMethod,

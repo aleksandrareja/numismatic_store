@@ -110,3 +110,4 @@ app.component('v-inpost-widget', {
 </script>
 
 @endPushOnce
+
