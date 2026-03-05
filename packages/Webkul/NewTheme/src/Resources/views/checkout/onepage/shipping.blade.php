@@ -4,7 +4,7 @@
     @processed="stepProcessed"
 ></v-shipping-methods>
 
-@include('custom-inpost-paczkomaty-shipping::checkout.inpost-widget')
+<v-inpost-widget :method="selectedMethod" />
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-shipping-methods-template">

@@ -43,9 +43,10 @@ class CustomInpostPaczkomatyShippingServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(dirname(__DIR__) . '/Resources/views', 'paczkomaty');
        
-        Event::listen('bagisto.shop.layout.body.after', function($viewRenderEventManager) {
+        /*Event::listen('bagisto.shop.layout.body.after', function($viewRenderEventManager) {
             $viewRenderEventManager->addTemplate('paczkomaty::checkout.inpost-widget');
         });
+        */
     }
 
 }

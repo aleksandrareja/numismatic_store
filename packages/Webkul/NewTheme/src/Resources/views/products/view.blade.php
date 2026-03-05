@@ -199,7 +199,7 @@
 
                                 @include('shop::products.view.types.booking')
 
-                               <div class="mt-8 mb-8 space-y-6 gap-2">
+                               <div class="mt-8 mb-8 space-y-6 gap-2 flex flex-col">
                                     <div class="flex items-center gap-4 group">
                                         <div class="w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="#a38655" class="w-6 h-6">
@@ -207,7 +207,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex flex-col">
-                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-zinc-600">Bezpieczny zakup</p>
+                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-navyBlue">Bezpieczny zakup</p>
                                             <p class="text-sm text-zinc-500 font-light leading-snug mt-0.5">Gwarancja autentyczności i bezpieczne płatności online.</p>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex flex-col">
-                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-zinc-600">Zakup telefoniczny</p>
+                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-navyBlue">Zakup telefoniczny</p>
                                             <p class="text-sm text-zinc-500 font-light leading-snug mt-0.5">Doradztwo numizmatyczne i zamówienia przez telefon.</p>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex flex-col">
-                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-zinc-600">Ubezpieczona wysyłka</p>
+                                            <p class="text-sm uppercase tracking-[2px] font-semibold text-navyBlue">Ubezpieczona wysyłka</p>
                                             <p class="text-sm text-zinc-500 font-light leading-snug mt-0.5">Paczki ubezpieczone na pełną wartość przedmiotu.</p>
                                         </div>
                                     </div>
