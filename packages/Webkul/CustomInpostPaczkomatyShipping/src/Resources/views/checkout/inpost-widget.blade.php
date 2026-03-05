@@ -1,10 +1,10 @@
 @pushOnce('scripts')
 
 <link rel="stylesheet"
-href="https://geowidget.inpost.pl/v1/assets/css/geowidget.css">
+href="//geowidget.inpost.pl/v1/assets/css/geowidget.css">
 
 <script
-src="https://geowidget.inpost.pl/v1/assets/js/geowidget.js"
+src="//geowidget.inpost.pl/v1/assets/js/geowidget.js"
 defer
 onload="window.inpostSdkLoaded = true"
 ></script>
@@ -69,7 +69,7 @@ app.component('v-inpost-widget', {
                 console.error('InPost Geowidget SDK not loaded');
                 return;
             }
-            
+
             if (this.widgetInstance) return;
 
             const config = {
