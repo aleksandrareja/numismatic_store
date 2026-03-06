@@ -77,7 +77,7 @@
                 <div class="flex justify-between items-end border-b border-lightGray pb-4 mt-10">
 
                     <!-- Description -->
-                    <div class="text-4xl text-gray-700">
+                    <div class="text-2xl text-gray-700 font-dmserif">
                         Wyniki wyszukiwania:
                     </div>
 
@@ -101,10 +101,6 @@
 
                     <!-- Product Listing Container -->
                     <div class="flex-1">
-                        <!-- Desktop Product Listing Toolbar -->
-                        <div class="max-md:hidden">
-                            @include('shop::categories.toolbar')
-                        </div>
 
                         <!-- Product List Card Container -->
                         <div
