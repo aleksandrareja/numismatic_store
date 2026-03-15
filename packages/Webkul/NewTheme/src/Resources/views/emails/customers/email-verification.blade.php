@@ -1,33 +1,29 @@
 @component('shop::emails.layout')
 
-<div style="background:#ffffff;padding:35px 30px;border-top:1px solid #e4e4e7;border-bottom:1px solid #e4e4e7; text-align:center;">
+<div style="background:#ffffff; padding:45px 35px; border-top:1px solid #e4e4e7; border-bottom:1px solid #e4e4e7; text-align:center;">
 
-    <p style="font-weight:600;font-size:22px;color:#121A26;line-height:28px;margin-bottom:20px;">
+    <p style="font-weight:700; font-size:24px; color:#111827; line-height:32px; margin:0 0 24px 0;">
         @lang('shop::app.emails.dear', ['customer_name' => $customer->name]), 👋
     </p>
 
-    <p style="font-size:16px;color:#384860;line-height:26px;margin-bottom:18px;">
+    <p style="font-size:16px; color:#4B5563; line-height:26px; margin:0 0 12px 0;">
         @lang('shop::app.emails.customers.verification.greeting')
     </p>
 
-    <p style="font-size:16px;color:#384860;line-height:26px;margin-bottom:35px;">
+    <p style="font-size:16px; color:#4B5563; line-height:26px; margin:0 0 40px 0;">
         @lang('shop::app.emails.customers.verification.description')
     </p>
 
-    <div style="text-align:center;margin:35px 0;">
+    <div style="text-align:center;">
         <a
             href="{{ route('shop.customers.verify', $customer->token) }}"
-            style="background:#38200F;color:#ffffff;padding:16px 40px;
-                   text-decoration:none;font-weight:600;font-size:14px;
-                   letter-spacing:0.5px;border-radius:6px;display:inline-block;
-                   text-transform:uppercase;">
+            style="background:#38200F; color:#ffffff; padding:18px 44px; 
+                   text-decoration:none; font-weight:600; font-size:14px; 
+                   letter-spacing:1px; border-radius:4px; display:inline-block; 
+                   text-transform:uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
             @lang('shop::app.emails.customers.verification.verify-email')
         </a>
     </div>
-
-    <p style="font-size:14px;color:#6b7280;line-height:22px;margin:0;">
-        Jeśli nie tworzyłeś konta w naszym sklepie, możesz bezpiecznie zignorować tę wiadomość.
-    </p>
 
 </div>
 
