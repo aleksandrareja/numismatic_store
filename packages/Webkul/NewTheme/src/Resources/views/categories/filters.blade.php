@@ -213,6 +213,7 @@
                                     class="peer absolute opacity-0"
                                     :value="option.id"
                                     v-model="appliedValues"
+                                    @change="applyValue"
                                     />
                                     
                                     <span
