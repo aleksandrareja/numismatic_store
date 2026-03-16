@@ -5,18 +5,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-            crossorigin
-        />
-
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin
-        />
-
-        <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
             rel="stylesheet"
         />

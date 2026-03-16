@@ -1173,7 +1173,7 @@ return [
         'customers' => [
             'registration' => [
                 'credentials-description' => 'Sua conta foi criada. Os detalhes da sua conta estão abaixo:',
-                'description'             => 'Twoje konto zostało teraz pomyślnie utworzone, możesz się zalogować za pomocą swojego adresu e-mail i hasła. Po zalogowaniu będziesz mógł korzystać z innych usług, w tym przeglądania wcześniejszych zamówień, list życzeń i edytowania informacji o koncie.',
+                'description'             => 'Twoje konto zostało pomyślnie utworzone, możesz się zalogować za pomocą swojego adresu e-mail i hasła. Po zalogowaniu będziesz mógł korzystać z innych usług, w tym przeglądania wcześniejszych zamówień, list życzeń i edytowania informacji o koncie.',
                 'greeting'                => 'Witamy i dziękujemy za zarejestrowanie się u nas!',
                 'password'                => 'Hasło',
                 'sign-in'                 => 'Zaloguj się',
@@ -1195,8 +1195,8 @@ return [
             ],
 
             'verification' => [
-                'description'  => 'Proszę kliknąć poniższy przycisk, aby zweryfikować swój adres e-mail.',
-                'greeting'     => 'Witaj!',
+                'description'  => 'Kliknij poniższy przycisk, aby zweryfikować swój adres e-mail.',
+                'greeting'     => 'Witaj w naszym sklepie!',
                 'subject'      => 'E-mail z weryfikacją konta',
                 'verify-email' => 'Zweryfikuj adres e-mail',
             ],
