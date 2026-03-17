@@ -88,15 +88,7 @@
                 class="text-3xl leading-none text-gray-500 hover:text-gray-800"
             >&times;</button>
         </div>
-        <div class="flex-1 overflow-hidden">
-            <inpost-geowidget
-                id="inpost-geowidget"
-                token="{{ $geowidgetToken }}"
-                language="pl"
-                config="parcelcollect"
-                onpoint="window.onInpostPointSelected"
-                style="width:100%;height:100%;display:block;"
-            ></inpost-geowidget>
+        <div class="flex-1 overflow-hidden" id="inpost-geowidget-container">
         </div>
     </div>
 </div>
@@ -114,7 +106,20 @@
     }
 
     window.inpostOpenWidget = function () {
-        document.getElementById('inpost-modal').style.display = 'flex';
+        var modal = document.getElementById('inpost-modal');
+        modal.style.display = 'flex';
+
+        // Wstrzyknij widget przez JS przy pierwszym otwarciu
+        var container = document.getElementById('inpost-geowidget-container');
+        if (!container.hasChildNodes()) {
+            var widget = document.createElement('inpost-geowidget');
+            widget.setAttribute('token', '{{ $geowidgetToken }}');
+            widget.setAttribute('language', 'pl');
+            widget.setAttribute('config', 'parcelcollect');
+            widget.setAttribute('onpoint', 'window.onInpostPointSelected');
+            widget.style.cssText = 'width:100%;height:100%;display:block;';
+            container.appendChild(widget);
+        }
     };
 
     window.inpostCloseWidget = function () {
