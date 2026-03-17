@@ -129,15 +129,15 @@
                     selectedLocker: null
                 }
             },
-            
+
             methods: {
                 store(selectedMethod) {
                     this.selectedMethod = selectedMethod;
 
-                    if(selectedMethod === 'paczkomaty_shipping' && !this.selectedLocker) {
+                    /*if(selectedMethod === 'paczkomaty_shipping' && !this.selectedLocker) {
                         alert('Proszę wybrać paczkomat przed kontynuacją.');
                         return;
-                    }
+                    }*/
 
                     this.$emit('processing', 'payment');
 
@@ -182,6 +182,8 @@
     </script>
 @endPushOnce
 
-<script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"></script>
+@pushOnce('scripts')
+    <script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"></script>
+@endPushOnce
 
 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_methods.after') !!}
