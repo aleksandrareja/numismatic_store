@@ -12,6 +12,10 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  * Main root application registry.
  */
 window.app = createApp({
+    compilerOptions: {
+        isCustomElement: (tag) => tag === 'inpost-geowidget',
+    },
+    
     data() {
         return {};
     },
