@@ -28,7 +28,7 @@
             widget.setAttribute('token', window.INPOST_TOKEN || '');
             widget.setAttribute('language', 'pl');
             widget.setAttribute('config', 'parcelcollect');
-            widget.setAttribute('onpoint', 'window.onInpostSelect');
+            widget.setAttribute('onpoint', 'onInpostSelect');
             widget.style.width   = '100%';
             widget.style.height  = '100%';
             widget.style.display = 'block';
@@ -41,7 +41,8 @@
         if (modal) modal.style.display = 'none';
     };
 
-    window.onInpostSelect = function (point) {
+    window.onInpostSelect = onInpostSelect;
+    function onInpostSelect(point) {
         inpostCloseWidget();
 
         var pointId = point.name;
