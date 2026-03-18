@@ -9,7 +9,6 @@
     <x-shop::shimmer.checkout.onepage.shipping-method />
 </v-shipping-methods>
 
-@include('inpost::shop.checkout.geowidget')
 
 
 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_methods.after') !!}
