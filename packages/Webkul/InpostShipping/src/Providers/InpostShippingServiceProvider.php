@@ -51,7 +51,7 @@ class InpostShippingServiceProvider extends EventServiceProvider
 
         Event::listen(
             'checkout.order.save.after',
-            [\Webkul\InpostShipping\src\Listeners\OrderSaved::class, 'handle']
+            [OrderSaved::class, 'handle']
         );
 
         // ── Routes ────────────────────────────────────────────────────────────
