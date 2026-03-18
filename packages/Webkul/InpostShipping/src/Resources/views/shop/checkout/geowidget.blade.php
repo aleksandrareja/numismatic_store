@@ -1,4 +1,4 @@
-@php
+<!--@php
     $geowidgetToken = core()->getConfigData('sales.carriers.inpost.geowidget_token') ?? '';
     $environment    = core()->getConfigData('sales.carriers.inpost.environment') ?? 'sandbox';
     $widgetBaseUrl  = $environment === 'production'
@@ -12,7 +12,7 @@
 @once
     <link rel="stylesheet" href="{{ $widgetBaseUrl }}/inpost-geowidget.css">
     <script src="{{ $widgetBaseUrl }}/inpost-geowidget.js" defer></script>
-@endonce
+@endonce-->
 
 <div id="inpost-widget-wrapper" style="display:none" class="mt-4 p-4 border rounded bg-white">
     <h3 class="font-semibold mb-2">📦 Wybierz paczkomat</h3>
@@ -46,7 +46,7 @@
         <div id="inpost-map" style="height:100%"></div>
     </div>
 </div>
-
+<!--
 @pushOnce('scripts')
 <script>
 (function () {
@@ -120,4 +120,4 @@
     setTimeout(toggleWidget, 500);
 })();
 </script>
-@endPushOnce
+@endPushOnce-->
