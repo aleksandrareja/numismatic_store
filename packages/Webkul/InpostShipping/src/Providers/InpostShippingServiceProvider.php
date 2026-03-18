@@ -21,9 +21,6 @@ class InpostShippingServiceProvider extends EventServiceProvider
          * Fired after every order is persisted.
          * We use it to copy the selected InPost locker from session to the order row.
          */
-        'checkout.order.save.after' => [
-            [OrderSaved::class, 'handle'],
-        ],
     ];
 
     /**
@@ -51,6 +48,10 @@ class InpostShippingServiceProvider extends EventServiceProvider
     {
         // Run parent boot so $listen mappings are registered
         parent::boot();
+
+        Event::listen('checkout.order.save.after', function ($order) {
+            (new \Webkul\InpostShipping\Listeners\OrderSaved())->handle($order);
+        });
 
         // ── Routes ────────────────────────────────────────────────────────────
         $this->loadRoutesFrom(dirname(__DIR__) . '/Http/routes.php');
