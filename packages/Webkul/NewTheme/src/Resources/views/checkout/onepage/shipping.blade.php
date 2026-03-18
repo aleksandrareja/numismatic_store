@@ -126,6 +126,71 @@
                 },
             },
         });
+
+        (function () {
+        const METHOD_CODE = 'inpost_inpost';
+
+        function getSelectedShipping() {
+            const el = document.querySelector('input[name="shipping_method"]:checked');
+            return el ? el.value : null;
+        }
+
+        function toggleWidget() {
+            const wrapper = document.getElementById('inpost-widget-wrapper');
+            if (!wrapper) return;
+            wrapper.style.display = getSelectedShipping() === METHOD_CODE ? 'block' : 'none';
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.name === 'shipping_method') {
+                setTimeout(toggleWidget, 200);
+            }
+        });
+
+        window.inpostOpenWidget = function () {
+            const modal = document.getElementById('inpost-modal');
+            modal.style.display = 'flex';
+
+            const container = document.getElementById('inpost-map');
+            if (!container.hasChildNodes()) {
+                const widget = document.createElement('inpost-geowidget');
+                widget.setAttribute('token', '{{ $geowidgetToken }}');
+                widget.setAttribute('language', 'pl');
+                widget.setAttribute('config', 'parcelcollect');
+                widget.setAttribute('onpoint', 'onInpostSelect');
+                widget.style.width = '100%';
+                widget.style.height = '100%';
+                container.appendChild(widget);
+            }
+        };
+
+        window.inpostCloseWidget = function () {
+            document.getElementById('inpost-modal').style.display = 'none';
+        };
+
+        window.onInpostSelect = function(point) {
+            inpostCloseWidget();
+
+            const id = point.name;
+            const address = point.address?.line1 || '';
+
+            document.getElementById('inpost-point-name').innerText = id;
+            document.getElementById('inpost-point-address').innerText = address;
+            document.getElementById('inpost-selected').classList.remove('hidden');
+            document.getElementById('inpost-open-btn').classList.add('hidden');
+
+            fetch('{{ route('inpost.save-point') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ point_id: id, point_address: address })
+            });
+        };
+
+        setTimeout(toggleWidget, 500);
+    })();
     </script>
 @endPushOnce
 

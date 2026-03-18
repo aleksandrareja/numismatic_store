@@ -121,13 +121,7 @@ class OrderController extends Controller
      */
     public function view(int $id)
     {
-        $order = $this->orderRepository->with([
-            'customer',
-            'items',
-            'billing_address',
-            'shipping_address',
-            'payment',
-        ])->findOrFail($id);
+        $order = $this->orderRepository->findOrFail($id);
 
         return view('admin::sales.orders.view', compact('order'));
     }
