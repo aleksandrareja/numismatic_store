@@ -11,7 +11,7 @@
 
 @once
     <link rel="stylesheet" href="{{ $widgetBaseUrl }}/inpost-geowidget.css">
-    <script defer src="{{ $widgetBaseUrl }}/inpost-geowidget.js"></script>
+    <script src="{{ $widgetBaseUrl }}/inpost-geowidget.js"></script>
 @endonce
 
 <div
@@ -73,8 +73,7 @@
     </div>
 </div>
 
-@push('scripts')
-    <script type="module">
+    <script>
         (function () {
             var INPOST_TOKEN = '{{ $geowidgetToken }}';
             var INPOST_METHOD = 'inpost_inpost';
@@ -90,6 +89,11 @@
             }
 
             window.inpostOpenWidget = function () {
+                if (!window.customElements.get('inpost-geowidget')) {
+                    alert('Widget InPost nie załadował się');
+                    return;
+                }
+
                 var modal = document.getElementById('inpost-modal');
                 if (modal) modal.style.display = 'flex';
 
@@ -177,4 +181,3 @@
 
         })();
     </script>
-@endpush
