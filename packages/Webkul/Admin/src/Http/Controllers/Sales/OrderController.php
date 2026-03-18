@@ -122,6 +122,7 @@ class OrderController extends Controller
     public function view(int $id)
     {
         $order = $this->orderRepository->findOrFail($id);
+        dd($order);
 
         return view('admin::sales.orders.view', compact('order'));
     }
