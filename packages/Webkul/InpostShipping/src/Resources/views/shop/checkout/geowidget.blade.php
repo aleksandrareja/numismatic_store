@@ -1,6 +1,7 @@
 @php
     $geowidgetToken = core()->getConfigData('sales.carriers.inpost.geowidget_token') ?? '';
     $environment    = core()->getConfigData('sales.carriers.inpost.environment') ?? 'sandbox';
+
     $widgetBaseUrl  = $environment === 'production'
         ? 'https://geowidget.inpost.pl'
         : 'https://sandbox-geowidget.inpost.pl';
@@ -14,157 +15,128 @@
     <script src="{{ $widgetBaseUrl }}/inpost-geowidget.js"></script>
 @endonce
 
-<div
-    id="inpost-widget-wrapper"
-    style="display:none"
-    class="mt-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
->
-    <p class="mb-3 font-semibold text-gray-800">
-        Wybierz paczkomat InPost
-    </p>
+<div id="inpost-widget-wrapper" style="display:none" class="mt-4 p-4 border rounded bg-white">
+    <h3 class="font-semibold mb-2">📦 Wybierz paczkomat</h3>
 
-    <div
-        id="inpost-selected-info"
-        class="{{ $savedPointId ? '' : 'hidden' }} mb-3 flex items-start gap-3 rounded-md border border-green-300 bg-green-50 p-3"
-    >
-        <span class="mt-0.5 text-2xl">📦</span>
-        <div class="flex-1">
-            <p class="font-semibold text-green-800" id="inpost-point-name">{{ $savedPointId }}</p>
-            <p class="text-sm text-green-700" id="inpost-point-address">{{ $savedPointAddress }}</p>
-        </div>
-        <button
-            type="button"
-            onclick="inpostOpenWidget()"
-            class="shrink-0 text-sm text-blue-600 underline hover:text-blue-800"
-        >Zmień paczkomat</button>
+    <div id="inpost-selected" class="{{ $savedPointId ? '' : 'hidden' }}">
+        <p><b id="inpost-point-name">{{ $savedPointId }}</b></p>
+        <p id="inpost-point-address">{{ $savedPointAddress }}</p>
+
+        <button type="button" onclick="inpostOpenWidget()" class="mt-2 text-blue-600 underline">
+            Zmień paczkomat
+        </button>
     </div>
 
     <button
-        type="button"
         id="inpost-open-btn"
+        type="button"
         onclick="inpostOpenWidget()"
-        class="{{ $savedPointId ? 'hidden' : '' }} inline-flex items-center gap-2 rounded-md bg-yellow-400 px-5 py-2.5 font-semibold text-black hover:bg-yellow-500"
+        class="{{ $savedPointId ? 'hidden' : '' }} mt-2 px-4 py-2 bg-yellow-400 rounded"
     >
-        📦 Wybierz paczkomat
+        Wybierz paczkomat
     </button>
-
-    <p id="inpost-validation-msg" class="mt-2 hidden text-sm text-red-600">
-        Proszę wybrać paczkomat przed kontynuowaniem
-    </p>
 </div>
 
-<div
-    id="inpost-modal"
-    style="display:none"
-    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
->
-    <div class="flex h-[90vh] w-full max-w-5xl flex-col rounded-xl bg-white shadow-2xl">
-        <div class="flex items-center justify-between border-b px-5 py-3">
-            <span class="text-lg font-bold text-gray-900">
-                📦 Wybierz paczkomat InPost
-            </span>
-            <button
-                type="button"
-                onclick="inpostCloseWidget()"
-                class="text-3xl leading-none text-gray-500 hover:text-gray-800"
-            >X</button>
+<div id="inpost-modal" style="display:none" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white w-full max-w-4xl h-[80vh] rounded shadow">
+        <div class="flex justify-between p-3 border-b">
+            <span>📦 Paczkomaty InPost</span>
+            <button onclick="inpostCloseWidget()">X</button>
         </div>
-        <div class="flex-1 overflow-hidden" id="inpost-geowidget-container"></div>
+
+        <div id="inpost-map" style="height:100%"></div>
     </div>
 </div>
 
-    <script>
-        (function () {
-            var INPOST_TOKEN = '{{ $geowidgetToken }}';
-            var INPOST_METHOD = 'inpost_inpost';
+<script>
+(function () {
 
-            function inpostShowWidget() {
-                var el = document.getElementById('inpost-widget-wrapper').style.display = 'block';
-                //if (el) el.style.display = 'block';
-            }
+    const METHOD_CODE = 'inpost_inpost'; // 🔥 TU MUSI BYĆ TWOJE
 
-            function inpostHideWidget() {
-                var el = document.getElementById('inpost-widget-wrapper');
-                if (el) el.style.display = 'none';
-            }
+    function getSelectedShipping() {
+        const el = document.querySelector('input[name="shipping_method"]:checked');
+        return el ? el.value : null;
+    }
 
-            window.inpostOpenWidget = function () {
-                if (!window.customElements.get('inpost-geowidget')) {
-                    alert('Widget InPost nie załadował się');
-                    return;
-                }
+    function toggleWidget() {
+        const wrapper = document.getElementById('inpost-widget-wrapper');
 
-                var modal = document.getElementById('inpost-modal');
-                if (modal) modal.style.display = 'flex';
+        if (!wrapper) return;
 
-                var container = document.getElementById('inpost-geowidget-container');
-                if (container && !container.hasChildNodes()) {
-                    var widget = document.createElement('inpost-geowidget');
-                    widget.setAttribute('token', INPOST_TOKEN);
-                    widget.setAttribute('language', 'pl');
-                    widget.setAttribute('config', 'parcelcollect');
-                    widget.setAttribute('onpoint', 'window.onInpostPointSelected');
-                    widget.style.cssText = 'width:100%;height:100%;display:block;';
-                    container.appendChild(widget);
-                }
-            };
+        if (getSelectedShipping() === METHOD_CODE) {
+            wrapper.style.display = 'block';
+        } else {
+            wrapper.style.display = 'none';
+        }
+    }
 
-            window.inpostCloseWidget = function () {
-                var modal = document.getElementById('inpost-modal');
-                if (modal) modal.style.display = 'none';
-            };
+    // 🔥 KLUCZ: działa z Vue (delegacja eventów)
+    document.addEventListener('click', function (e) {
+        if (e.target.name === 'shipping_method') {
+            setTimeout(toggleWidget, 200);
+        }
+    });
 
-            window.onInpostPointSelected = function (point) {
-                inpostCloseWidget();
+    window.inpostOpenWidget = function () {
 
-                var pointId = point.name;
-                var addr = point.address_details || {};
-                var pointAddress = addr.street
-                    ? (addr.street + ' ' + (addr.building_number || '') + ', ' + (addr.post_code || '') + ' ' + (addr.city || '')).trim()
-                    : ((point.address && point.address.line1) || '');
+        if (!window.customElements.get('inpost-geowidget')) {
+            alert('Widget InPost się nie załadował');
+            return;
+        }
 
-                var nameEl = document.getElementById('inpost-point-name');
-                var addrEl = document.getElementById('inpost-point-address');
-                var infoEl = document.getElementById('inpost-selected-info');
-                var btnEl  = document.getElementById('inpost-open-btn');
-                var msgEl  = document.getElementById('inpost-validation-msg');
+        document.getElementById('inpost-modal').style.display = 'flex';
 
-                if (nameEl) nameEl.textContent = pointId;
-                if (addrEl) addrEl.textContent = pointAddress;
-                if (infoEl) infoEl.classList.remove('hidden');
-                if (btnEl)  btnEl.classList.add('hidden');
-                if (msgEl)  msgEl.classList.add('hidden');
+        const map = document.getElementById('inpost-map');
 
-                fetch('{{ route('inpost.save-point') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]') || {}).content || '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        point_id:      pointId,
-                        point_name:    pointId,
-                        point_address: pointAddress,
-                    }),
-                })
-                .then(function(r) { return r.json(); })
-                .catch(function(err) { console.error('InPost save-point error:', err); });
-            };
+        if (!map.hasChildNodes()) {
+            const widget = document.createElement('inpost-geowidget');
 
+            widget.setAttribute('token', '{{ $geowidgetToken }}');
+            widget.setAttribute('language', 'pl');
+            widget.setAttribute('config', 'parcelcollect');
+            widget.setAttribute('onpoint', 'onInpostSelect');
 
-            function checkInitialState() {
-                var checked = document.querySelector('input[name="shipping_method"]:checked');
-                if (checked && checked.value === INPOST_METHOD) {
-                    inpostShowWidget();
-                }
-            }
+            widget.style.width = '100%';
+            widget.style.height = '100%';
 
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', checkInitialState);
-            } else {
-                checkInitialState();
-            }
+            map.appendChild(widget);
+        }
+    };
 
+    window.inpostCloseWidget = function () {
+        document.getElementById('inpost-modal').style.display = 'none';
+    };
 
-        })();
-    </script>
+    window.onInpostSelect = function (point) {
+
+        inpostCloseWidget();
+
+        const id = point.name;
+
+        const address = point.address?.line1 || '';
+
+        document.getElementById('inpost-point-name').innerText = id;
+        document.getElementById('inpost-point-address').innerText = address;
+
+        document.getElementById('inpost-selected').classList.remove('hidden');
+        document.getElementById('inpost-open-btn').classList.add('hidden');
+
+        fetch('{{ route('inpost.save-point') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                point_id: id,
+                point_address: address
+            })
+        });
+    };
+
+    // 🔥 start po załadowaniu + po Vue
+    setTimeout(toggleWidget, 500);
+    setTimeout(toggleWidget, 1500);
+
+})();
+</script>
