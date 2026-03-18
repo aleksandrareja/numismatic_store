@@ -140,9 +140,11 @@
 
 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_methods.after') !!}
 
+<!--
+
 @pushOnce('scripts')
-    <link rel="stylesheet" href="{{ $widgetBaseUrl }}/inpost-geowidget.css">
-    <script src="{{ $widgetBaseUrl }}/inpost-geowidget.js"></script>
+    <link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css">
+    <script src="https://geowidget.inpost.pl/inpost-geowidget.js"></script>
     <script>
 (function () {
 
@@ -236,3 +238,4 @@
 })();
 </script>
 @endPushOnce
+-->
