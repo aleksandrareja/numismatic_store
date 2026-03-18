@@ -16,6 +16,12 @@ class OrderSaved
      */
     public function handle(Order $order): void
     {
+        Log::info('InPost: OrderSaved handle called', [
+            'order_id'        => $order->id,
+            'shipping_method' => $order->shipping_method,
+            'session_point'   => session('inpost_point_id'),
+        ]);
+
         // Only act when the customer chose InPost as shipping method
         if ($order->shipping_method !== 'inpost_inpost') {
             return;
