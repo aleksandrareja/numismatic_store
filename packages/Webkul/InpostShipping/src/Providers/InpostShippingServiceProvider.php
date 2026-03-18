@@ -73,7 +73,7 @@ class InpostShippingServiceProvider extends EventServiceProvider
         // ── View Render Events ────────────────────────────────────────────────
         // Inject the GeoWidget below the shipping method list on the checkout page.
    
-        Event::listen(
+        /*Event::listen(
             'bagisto.shop.checkout.onepage.shipping_methods.after',
             function ($viewRenderEventManager) {
                 static $rendered = false;
@@ -81,7 +81,7 @@ class InpostShippingServiceProvider extends EventServiceProvider
                 $rendered = true;
                 $viewRenderEventManager->addTemplate('inpost::shop.checkout.geowidget');
             }
-        );
+        );*/
 
 
         // Inject InPost locker info into the admin order detail view
