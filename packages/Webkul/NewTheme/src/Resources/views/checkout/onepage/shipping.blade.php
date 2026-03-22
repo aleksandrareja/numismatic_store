@@ -85,17 +85,9 @@
                                         <label class="flex items-center"
                                             :for="rate.method">
                                             <span class="icon-radio-unselect peer-checked:icon-radio-select text-2xl text-navyBlue"></span>
-                                        </label>
+                                        </label>\
+                                        
                                 </div>
-
-                                
-                                    <div 
-                                        v-if="rate.method === 'inpost_inpost' && selectedMethod === rate.method"
-                                        class="mt-3"
-                                    >
-                                        @include('inpost::shop.checkout.geowidget')
-                                    </div>
-
 
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.after') !!}
                             </template>
