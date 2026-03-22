@@ -71,7 +71,9 @@
                                             </p>
                                         </div>
 
-                                         <span class="flex icon-radio-unselect peer-checked:icon-radio-select cursor-pointer text-2xl text-navyBlue ltr:right-5 rtl:left-5"></span>
+                                        <div class="flex items-center justify-end ltr:ml-auto rtl:mr-auto">
+                                            <span class="flex icon-radio-unselect peer-checked:icon-radio-select cursor-pointer text-2xl text-navyBlue"></span>
+                                        </div>
                                     </label>
                                 </div>
 
