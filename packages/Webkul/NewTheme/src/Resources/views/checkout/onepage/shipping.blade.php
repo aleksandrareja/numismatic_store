@@ -66,11 +66,10 @@
                                         :for="rate.method"
                                     >
                                         <img 
-                                            :src="rate.method_image_url"
-                                            alt="Shipping Method Image"
-                                            class="h-10 w-10 object-contain max-sm:h-6 max-sm:w-6"
-                                            v-if="rate.method_image_url"
-                                        >
+                                            v-if="rate.image"
+                                            :src="rate.image"
+                                            class="h-10 w-10 object-contain"
+                                        />
                                         <span  v-else class="icon-flate-rate text-6xl text-navyBlue max-sm:text-5xl"></span>
 
 
