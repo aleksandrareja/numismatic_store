@@ -9,7 +9,7 @@
     <x-shop::shimmer.checkout.onepage.shipping-method />
 </v-shipping-methods>
 
-<!--@include('inpost::shop.checkout.geowidget')-->
+@include('inpost::shop.checkout.geowidget')
 
 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_methods.after') !!}
 
@@ -38,12 +38,12 @@
 
                     <!-- Accordion Blade Component Content -->
                     <x-slot:content class="mt-8 !p-0 max-md:mt-0 max-md:rounded-t-none max-md:border max-md:border-t-0 max-md:!p-4">
-                        <div class="flex flex-wrap gap-4 max-sm:gap-2.5">
+                        <div class="flex flex-wrap gap-8 max-md:gap-4 max-sm:gap-2.5">
                             <template v-for="method in methods">
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.before') !!}
 
                                 <div
-                                    class="w-full"
+                                    class="w-full select-none max-md:max-w-full max-md:flex-auto"
                                     v-for="rate in method.rates"
                                 >
                                     <input 
@@ -56,37 +56,27 @@
                                     >
 
                                     <label 
+                                        class="icon-radio-unselect peer-checked:icon-radio-select absolute top-5 cursor-pointer text-2xl text-navyBlue ltr:right-5 rtl:left-5"
                                         :for="rate.method"
-                                        class="flex items-center justify-between w-full cursor-pointer rounded-lg border border-zinc-200 p-5"
                                     >
-                                        <!-- LEFT: ICON -->
-                                        <div class="flex items-center gap-4">
-                                            <span class="icon-flate-rate text-4xl text-navyBlue"></span>
-
-                                            <!-- CENTER: TEXT -->
-                                            <div>
-                                                <p class="text-lg font-semibold">
-                                                    @{{ rate.base_formatted_price }}
-                                                </p>
-                                                
-                                                <p class="text-sm text-zinc-500">
-                                                    <span class="font-medium text-zinc-700">
-                                                        @{{ rate.method_title }}
-                                                    </span>
-                                                    <span v-if="rate.method_description">
-                                                        - @{{ rate.method_description }}
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
                                     </label>
 
-                                     <!-- RIGHT: RADIO -->
-                                        <label class="flex items-center"
-                                            :for="rate.method">
-                                            <span class="icon-radio-unselect peer-checked:icon-radio-select text-2xl text-navyBlue"></span>
-                                        </label>\
-                                        
+                                    <label 
+                                        class="flex cursor-pointer rounded-xl border border-zinc-200 p-5 max-sm:flex max-sm:gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
+                                        :for="rate.method"
+                                    >
+                                        <span class="icon-flate-rate text-6xl text-navyBlue max-sm:text-5xl"></span>
+
+                                        <div>
+                                            <p class="mt-1.5 text-2xl font-semibold max-md:text-base">
+                                                @{{ rate.base_formatted_price }}
+                                            </p>
+                                            
+                                            <p class="mt-2.5 text-xs font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-zinc-500">
+                                                <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
+                                            </p>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.after') !!}
