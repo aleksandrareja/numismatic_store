@@ -14,7 +14,7 @@
     <div id="inpost-selected" class="{{ $savedPointId ? '' : 'hidden' }} flex items-center justify-between">
         <p><b id="inpost-point-name">{{ $savedPointId }}</b></p>
         <p id="inpost-point-address">{{ $savedPointAddress }}</p>
-        <button type="button" onclick="inpostOpenWidget()" class="mt-2 rounded-md  px-5 py-2.5 font-semibold uppercase text-black" style="background-color: #ffcd00; hover:background-color: #e6b800;">
+        <button type="button" onclick="inpostOpenWidget()" class="rounded-md  px-5 py-2.5 font-semibold text-sm uppercase text-black" style="background-color: #ffcd00;">
             Zmień paczkomat
         </button>
     </div>
@@ -23,8 +23,8 @@
         id="inpost-open-btn"
         type="button"
         onclick="inpostOpenWidget()"
-        class="{{ $savedPointId ? 'hidden' : '' }} mt-3 rounded-md px-5 py-2.5 font-semibold uppercase text-black"
-        style="background-color: #ffcd00; hover:background-color: #e6b800;"
+        class="{{ $savedPointId ? 'hidden' : '' }} rounded-md px-5 py-2.5 font-semibold uppercase text-black text-sm"
+        style="background-color: #ffcd00;"
     >
         Otwórz mapę paczkomatów InPost
     </button>
