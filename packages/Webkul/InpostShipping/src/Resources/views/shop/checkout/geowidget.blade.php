@@ -10,13 +10,13 @@
 
 
 {{-- Przycisk i informacja o wybranym paczkomacie --}}
-<div id="inpost-widget-wrapper" style="display:none;" class="mt-4 rounded-xl border border-zinc-200 bg-gray-100 p-5 shadow-sm">
+<div id="inpost-widget-wrapper" class="mt-4 flex items-center justify-between rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
     <h3 class="font-semibold mb-2 text-zinc-800">Wybierz paczkomat InPost</h3>
 
     <div id="inpost-selected" class="{{ $savedPointId ? '' : 'hidden' }}">
         <p><b id="inpost-point-name">{{ $savedPointId }}</b></p>
         <p id="inpost-point-address">{{ $savedPointAddress }}</p>
-        <button type="button" onclick="inpostOpenWidget()" class="mt-2 rounded-lg bg-yellow-400 px-4 py-2.5 font-semibold text-black hover:bg-yellow-500">
+        <button type="button" onclick="inpostOpenWidget()" class="mt-2 rounded-lg bg-yellow-400 px-4 py-2.5 font-semibold text-black" style="background-color: #FFD700;">
             Zmień paczkomat
         </button>
     </div>
@@ -25,7 +25,8 @@
         id="inpost-open-btn"
         type="button"
         onclick="inpostOpenWidget()"
-        class="{{ $savedPointId ? 'hidden' : '' }} mt-3 w-full rounded-lg bg-yellow-400 px-4 py-2.5 font-semibold text-black hover:bg-yellow-500"
+        class="{{ $savedPointId ? 'hidden' : '' }} mt-3 w-full rounded-lg bg-yellow-400 px-4 py-2.5 font-semibold text-black"
+        style="background-color: #FFD700;"
     >
         Otwórz mapę paczkomatów InPost
     </button>
