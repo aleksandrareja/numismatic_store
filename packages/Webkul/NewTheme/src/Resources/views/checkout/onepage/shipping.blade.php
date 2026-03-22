@@ -56,23 +56,35 @@
                                     >
 
                                     <label 
-                                        class="flex cursor-pointer rounded-xl border border-zinc-200 p-5 gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
                                         :for="rate.method"
+                                        class="flex items-center justify-between w-full cursor-pointer rounded-xl border border-zinc-200 p-5 transition-all duration-200
+                                            hover:border-navyBlue hover:shadow-sm
+                                            peer-checked:border-navyBlue peer-checked:bg-blue-50"
                                     >
-                                        <span class="icon-flate-rate text-6xl text-navyBlue max-sm:text-5xl"></span>
+                                        <!-- LEFT: ICON -->
+                                        <div class="flex items-center gap-4">
+                                            <span class="icon-flate-rate text-4xl text-navyBlue"></span>
 
-                                        <div>
-                                            <p class="mt-1.5 text-xl font-semibold max-md:text-base">
-                                                @{{ rate.base_formatted_price }}
-                                            </p>
-                                            
-                                            <p class="mt-2.5 text-sm font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-zinc-500">
-                                                <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
-                                            </p>
+                                            <!-- CENTER: TEXT -->
+                                            <div>
+                                                <p class="text-lg font-semibold">
+                                                    @{{ rate.base_formatted_price }}
+                                                </p>
+                                                
+                                                <p class="text-sm text-zinc-500">
+                                                    <span class="font-medium text-zinc-700">
+                                                        @{{ rate.method_title }}
+                                                    </span>
+                                                    <span v-if="rate.method_description">
+                                                        - @{{ rate.method_description }}
+                                                    </span>
+                                                </p>
+                                            </div>
                                         </div>
 
-                                        <div class="flex items-center justify-end ltr:ml-auto rtl:mr-auto">
-                                            <span class="flex icon-radio-unselect peer-checked:icon-radio-select cursor-pointer text-2xl text-navyBlue"></span>
+                                        <!-- RIGHT: RADIO -->
+                                        <div class="flex items-center">
+                                            <span class="icon-radio-unselect peer-checked:icon-radio-select text-2xl text-navyBlue"></span>
                                         </div>
                                     </label>
                                 </div>
