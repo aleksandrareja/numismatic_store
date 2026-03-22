@@ -43,7 +43,7 @@
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.before') !!}
 
                                 <div
-                                    class="relative max-w-[218px] select-none max-md:max-w-full max-md:flex-auto"
+                                    class="w-full"
                                     v-for="rate in method.rates"
                                 >
                                     <input 
@@ -62,17 +62,17 @@
                                     </label>
 
                                     <label 
-                                        class="block cursor-pointer rounded-xl border border-zinc-200 p-5 max-sm:flex max-sm:gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
+                                        class="flex cursor-pointer rounded-xl border border-zinc-200 p-5 gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
                                         :for="rate.method"
                                     >
                                         <span class="icon-flate-rate text-6xl text-navyBlue max-sm:text-5xl"></span>
 
                                         <div>
-                                            <p class="mt-1.5 text-2xl font-semibold max-md:text-base">
+                                            <p class="mt-1.5 text-xl font-semibold max-md:text-base">
                                                 @{{ rate.base_formatted_price }}
                                             </p>
                                             
-                                            <p class="mt-2.5 text-xs font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-zinc-500">
+                                            <p class="mt-2.5 text-sm font-medium max-md:mt-1 max-sm:mt-0 max-sm:font-normal max-sm:text-zinc-500">
                                                 <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
                                             </p>
                                         </div>
