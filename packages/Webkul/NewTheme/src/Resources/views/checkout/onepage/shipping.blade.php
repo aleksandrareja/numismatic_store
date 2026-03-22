@@ -7,9 +7,9 @@
 >
     <!-- Shipping Method Shimmer Effect -->
     <x-shop::shimmer.checkout.onepage.shipping-method />
+    @include('inpost::shop.checkout.geowidget')
 </v-shipping-methods>
 
-@include('inpost::shop.checkout.geowidget')
 
 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_methods.after') !!}
 
@@ -38,7 +38,7 @@
 
                     <!-- Accordion Blade Component Content -->
                     <x-slot:content class="mt-8 !p-0 max-md:mt-0 max-md:rounded-t-none max-md:border max-md:border-t-0 max-md:!p-4">
-                        <div class="flex flex-wrap gap-8 max-md:gap-4 max-sm:gap-2.5">
+                        <div class="flex flex-wrap gap-4 max-sm:gap-2.5">
                             <template v-for="method in methods">
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.before') !!}
 
@@ -56,12 +56,6 @@
                                     >
 
                                     <label 
-                                        class="icon-radio-unselect peer-checked:icon-radio-select absolute top-5 cursor-pointer text-2xl text-navyBlue ltr:right-5 rtl:left-5"
-                                        :for="rate.method"
-                                    >
-                                    </label>
-
-                                    <label 
                                         class="flex cursor-pointer rounded-xl border border-zinc-200 p-5 gap-4 max-sm:rounded-lg max-sm:px-4 max-sm:py-2.5"
                                         :for="rate.method"
                                     >
@@ -76,6 +70,8 @@
                                                 <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
                                             </p>
                                         </div>
+
+                                         <div class="icon-radio-unselect peer-checked:icon-radio-select absolute top-5 cursor-pointer text-2xl text-navyBlue ltr:right-5 rtl:left-5"></div>
                                     </label>
                                 </div>
 
