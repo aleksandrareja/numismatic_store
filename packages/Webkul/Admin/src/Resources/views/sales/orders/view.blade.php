@@ -743,6 +743,8 @@
                                 <p class="text-gray-600 dark:text-gray-300">
                                     @lang('admin::app.sales.orders.view.shipping-price')
                                 </p>
+
+                                @include('inpost::admin.sales.orders.view.shipping-details')
                             </div>
 
                             {!! view_render_event('bagisto.admin.sales.order.shipping-method.after', ['order' => $order]) !!}
