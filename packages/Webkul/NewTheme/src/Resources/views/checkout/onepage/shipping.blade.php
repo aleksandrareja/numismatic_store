@@ -43,7 +43,7 @@
                                 {!! view_render_event('bagisto.shop.checkout.onepage.shipping_method.before') !!}
 
                                 <div
-                                    class="relative w-full select-none max-md:max-w-full max-md:flex-auto"
+                                    class="relative w-full select-none max-md:flex-auto"
                                     v-for="rate in method.rates"
                                 >
                                     <input 
