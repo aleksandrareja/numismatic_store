@@ -114,8 +114,6 @@
                         const pointId= localStorage.getItem('inpost_point_id');
                         if (!pointId) {
                             alert('Wybierz paczkomat InPost');
-                            this.$emit('processing', 'shipping');
-                            return;
                         }
                     }
                     this.$emit('processing', 'payment');
