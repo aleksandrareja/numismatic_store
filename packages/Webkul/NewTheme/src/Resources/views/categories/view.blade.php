@@ -64,7 +64,7 @@
             <div class="container px-[60px] max-lg:px-8 max-md:px-4">
                 <!-- CATEGORY HEADER -->
                 @if ($category->description)
-                <div class="flex justify-between items-end border-b border-lightGray pb-4 mt-10">
+                <div class="flex justify-between items-end border-b border-lightGray pb-4 mt-10 max-md:mt-0 max-md:p-5">
 
                     <!-- Description -->
                     <div class="text-4xl text-gray-700">
