@@ -1,196 +1,102 @@
 @component('shop::emails.layout')
-    <div style="margin-bottom: 34px;">
-        <span style="font-size: 22px;font-weight: 600;color: #121A26">
+
+<div style="background:#ffffff; padding:45px 35px; border-top:1px solid #e4e4e7; border-bottom:1px solid #e4e4e7;">
+
+    <div style="text-align: center; margin-bottom: 35px;">
+        <h1 style="font-family: 'Poppins', sans-serif; font-weight:700; font-size:24px; color:#111827; line-height:32px; margin:0 0 16px 0;">
             @lang('shop::app.emails.orders.shipped.title')
-        </span> <br>
-
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
-            @lang('shop::app.emails.dear', ['customer_name' => $shipment->order->customer_full_name]),👋
+        </h1>
+        <p style="font-family: 'Inter', sans-serif; font-size:16px; color:#4B5563; line-height:24px; margin:0 0 8px 0;">
+            @lang('shop::app.emails.dear', ['customer_name' => $shipment->order->customer_full_name]),
         </p>
-
-        <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size:16px; color:#4B5563; line-height:24px; margin:0;">
             @lang('shop::app.emails.orders.shipped.greeting', [
                 'invoice_id' => $shipment->increment_id,
-                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $shipment->order_id) . '" style="color: #2969FF;">#' . $shipment->order->increment_id . '</a>',
+                'order_id'   => '<a href="' . route('shop.customers.account.orders.view', $shipment->order_id) . '" style="color: #38200F; font-weight: 600; text-decoration: underline;">#' . $shipment->order->increment_id . '</a>',
                 'created_at' => core()->formatDate($shipment->order->created_at, 'Y-m-d H:i:s')
             ])
         </p>
     </div>
 
-    <div style="font-size: 20px;font-weight: 600;color: #121A26">
-        @lang('shop::app.emails.orders.shipped.summary')
-    </div>
-
-    <div style="display: flex;flex-direction: row;margin-top: 20px;justify-content: space-between;margin-bottom: 40px;">
-        @if ($shipment->order->shipping_address)
-            <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
-                    @lang('shop::app.emails.orders.shipping-address')
-                </div>
-
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
-                    {{ $shipment->order->shipping_address->company_name ?? '' }}<br/>
-
-                    {{ $shipment->order->shipping_address->name }}<br/>
-
-                    {{ $shipment->order->shipping_address->address }}<br/>
-
-                    {{ $shipment->order->shipping_address->postcode . " " . $shipment->order->shipping_address->city }}<br/>
-
-                    {{ $shipment->order->shipping_address->state }}<br/>
-
-                    ---<br/>
-
-                    @lang('shop::app.emails.orders.contact') : {{ $shipment->order->billing_address->phone }}
-                </div>
-
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
-                    @lang('shop::app.emails.orders.shipping')
-                </div>
-
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
-                    {{ $shipment->order->shipping_title }}
-                </div>
-
-
-                <div style="font-size: 16px; color: #384860;">
-                    <div>
-                        <span>
-                            @lang('shop::app.emails.orders.carrier') :
-                        </span>
-
-                        {{ $shipment->carrier_title }}
+    <div style="margin-bottom: 40px;">
+        <h2 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 20px; text-align: center;">
+            @lang('shop::app.emails.orders.shipped.summary')
+        </h2>
+        
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                @if ($shipment->order->shipping_address)
+                <td style="width: 50%; vertical-align: top; padding-right: 15px;">
+                    <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: #111827; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">
+                        @lang('shop::app.emails.orders.shipping-address')
+                    </p>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 14px; color: #4B5563; line-height: 22px;">
+                        {{ $shipment->order->shipping_address->company_name ?? '' }}<br/>
+                        {{ $shipment->order->shipping_address->name }}<br/>
+                        {{ $shipment->order->shipping_address->address }}<br/>
+                        {{ $shipment->order->shipping_address->postcode . " " . $shipment->order->shipping_address->city }}<br/>
+                        {{ $shipment->order->shipping_address->state }}<br/>
+                        <span style="color: #9CA3AF; font-size: 13px;">@lang('shop::app.emails.orders.contact'): {{ $shipment->order->billing_address->phone }}</span>
                     </div>
-
-                    <div>
-                        <span>
-                            @lang('shop::app.emails.orders.tracking-number', ['tracking_number' =>  $shipment->track_number])
-                        </span>
-                    </div>
-                </div>
-
-                @php $additionalDetails = \Webkul\Payment\Payment::getAdditionalDetails($shipment->order->payment->method); @endphp
-
-                @if (! empty($additionalDetails))
-                    <div style="font-size: 16px; color: #384860;">
-                        <div>
-                            <span>{{ $additionalDetails->title }} : </span>
-                        </div>
-
-                        <div>
-                            <span>{{ $additionalDetails->value }} </span>
-                        </div>
-                    </div>
+                </td>
                 @endif
-            </div>
-        @endif
 
-        @if ($shipment->order->billing_address)
-            <div style="line-height: 25px;">
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
-                    @lang('shop::app.emails.orders.billing-address')
-                </div>
+                <td style="width: 50%; vertical-align: top; padding-left: 15px;">
+                    <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: #111827; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">
+                        @lang('shop::app.emails.orders.shipping')
+                    </p>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: #4B5563; margin: 0 0 15px 0;">
+                        {{ $shipment->order->shipping_title }}
+                    </p>
 
-                <div style="font-size: 16px;font-weight: 400;color: #384860;margin-bottom: 40px;">
-                    {{ $shipment->order->billing_address->company_name ?? '' }}<br/>
-
-                    {{ $shipment->order->billing_address->name }}<br/>
-
-                    {{ $shipment->order->billing_address->address }}<br/>
-
-                    {{ $shipment->order->billing_address->postcode . " " . $shipment->order->billing_address->city }}<br/>
-
-                    {{ $shipment->order->billing_address->state }}<br/>
-
-                    ---<br/>
-
-                    @lang('shop::app.emails.orders.contact') : {{ $shipment->order->billing_address->phone }}
-                </div>
-
-                <div style="font-size: 16px;font-weight: 600;color: #121A26;">
-                    @lang('shop::app.emails.orders.payment')
-                </div>
-
-                <div style="font-size: 16px;font-weight: 400;color: #384860;">
-                    {{ core()->getConfigData('sales.payment_methods.' . $shipment->order->payment->method . '.title') }}
-                </div>
-            </div>
-        @endif
+                    <div style="background-color: #F9FAFB; padding: 15px; border-radius: 6px; border: 1px dashed #CBD5E1;">
+                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #111827; margin: 0 0 5px 0;">
+                            <strong>@lang('shop::app.emails.orders.carrier'):</strong> {{ $shipment->carrier_title }}
+                        </p>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #111827; margin: 0;">
+                            <strong>@lang('shop::app.emails.orders.tracking-number', ['tracking_number' => '']):</strong> 
+                            <span style="color: #38200F; font-weight: 700;">{{ $shipment->track_number }}</span>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <div style="padding-bottom: 40px;border-bottom: 1px solid #CBD5E1;">
-        <table style="overflow-x: auto; border-collapse: collapse;
-        border-spacing: 0;width: 100%">
+    <div style="border: 1px solid #e4e4e7; border-radius: 8px; overflow: hidden;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
             <thead>
-                <tr style="color: #121A26;border-top: 1px solid #CBD5E1;border-bottom: 1px solid #CBD5E1;">
-                    @foreach (['sku', 'name', 'price', 'qty'] as $item)
-                        <th style="text-align: left;padding: 15px">
-                            @lang('shop::app.emails.orders.' . $item)
-                        </th>
-                    @endforeach
+                <tr style="background-color: #F9FAFB;">
+                    <th style="font-family: 'Inter', sans-serif; text-align: left; padding: 12px 15px; font-size: 11px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">@lang('shop::app.emails.orders.sku')</th>
+                    <th style="font-family: 'Inter', sans-serif; text-align: left; padding: 12px 15px; font-size: 11px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">@lang('shop::app.emails.orders.name')</th>
+                    <th style="font-family: 'Inter', sans-serif; text-align: left; padding: 12px 15px; font-size: 11px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">@lang('shop::app.emails.orders.qty')</th>
                 </tr>
             </thead>
-
-            <tbody style="font-size: 16px;font-weight: 400;color: #384860;">
+            <tbody>
                 @foreach ($shipment->items as $item)
-                    <tr style="vertical-align: text-top;">
-                        <td style="text-align: left;padding: 15px">
-                            {{ $item->sku }}
-                        </td>
-
-                        <td style="text-align: left;padding: 15px">
-                            {{ $item->name }}
-
-                            @if (isset($item->additional['attributes']))
-                                <div>
-                                    @foreach ($item->additional['attributes'] as $attribute)
-                                        @if (
-                                            ! isset($attribute['attribute_type'])
-                                            || $attribute['attribute_type'] !== 'file'
-                                        )
-                                            <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}<br>
-                                        @else
-                                            {{ $attribute['attribute_name'] }} :
-
-                                            <a
-                                                href="{{ Storage::url($attribute['option_label']) }}"
-                                                class="text-blue-600 hover:underline"
-                                                download="{{ File::basename($attribute['option_label']) }}"
-                                            >
-                                                {{ File::basename($attribute['option_label']) }}
-                                            </a>
-
-                                            <br>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            @endif
-                        </td>
-
-                        <td style="display: flex;flex-direction: column;text-align: left;padding: 15px">
-                            @if (core()->getConfigData('sales.taxes.sales.display_prices') == 'including_tax')
-                                {{ core()->formatPrice($item->price_incl_tax, $shipment->order->order_currency_code) }}
-                            @elseif (core()->getConfigData('sales.taxes.sales.display_prices') == 'both')
-                                {{ core()->formatPrice($item->price_incl_tax, $shipment->order->order_currency_code) }}
-
-                                <span style="font-size: 12px; white-space: nowrap">
-                                    @lang('shop::app.emails.orders.excl-tax')
-
-                                    <span style="font-weight: 600">
-                                        {{ core()->formatPrice($item->price, $shipment->order->order_currency_code) }}
-                                    </span>
-                                </span>
-                            @else
-                                {{ core()->formatPrice($item->price, $shipment->order->order_currency_code) }}
-                            @endif
-                        </td>
-
-                        <td style="text-align: left;padding: 15px">
-                            {{ $item->qty }}
-                        </td>
-                    </tr>
+                <tr style="border-top: 1px solid #e4e4e7;">
+                    <td style="padding: 15px; font-family: 'Inter', sans-serif; font-size: 14px; color: #111827; vertical-align: top;">
+                        {{ $item->sku }}
+                    </td>
+                    <td style="padding: 15px; font-family: 'Inter', sans-serif; font-size: 14px; color: #111827; vertical-align: top;">
+                        <div style="font-weight: 600; margin-bottom: 4px;">{{ $item->name }}</div>
+                        @if (isset($item->additional['attributes']))
+                            <div style="font-size: 12px; color: #6B7280;">
+                                @foreach ($item->additional['attributes'] as $attribute)
+                                    <strong>{{ $attribute['attribute_name'] }}:</strong> {{ $attribute['option_label'] }}<br>
+                                @endforeach
+                            </div>
+                        @endif
+                    </td>
+                    <td style="padding: 15px; font-family: 'Inter', sans-serif; font-size: 14px; color: #111827; vertical-align: top;">
+                        {{ $item->qty }}
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+</div>
+
 @endcomponent

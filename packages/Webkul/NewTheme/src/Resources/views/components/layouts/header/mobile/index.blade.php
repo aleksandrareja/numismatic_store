@@ -11,7 +11,7 @@
 <div class="flex flex-wrap gap-4 px-4 pb-4 pt-6 shadow-sm lg:hidden">
     <div class="flex w-full items-center justify-between">
         <!-- Left Navigation -->
-        <div class="flex items-center gap-x-3">
+        <div class="flex items-center gap-x-4">
             {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.before') !!}
 
             <!-- Drawer -->
