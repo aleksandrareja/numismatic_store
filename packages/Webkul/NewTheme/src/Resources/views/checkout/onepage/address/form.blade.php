@@ -167,7 +167,7 @@
                         :label="trans('shop::app.checkout.onepage.address.country')"
                         :placeholder="trans('shop::app.checkout.onepage.address.country')"
                     >
-                        <option value="">
+                        <!--<option value="">
                             @lang('shop::app.checkout.onepage.address.select-country')
                         </option>
 
@@ -176,6 +176,9 @@
                             :value="country.code"
                         >
                             @{{ country.name }}
+                        </option>-->
+                        <option value="PL">
+                            Polska
                         </option>
                     </x-shop::form.control-group.control>
 
