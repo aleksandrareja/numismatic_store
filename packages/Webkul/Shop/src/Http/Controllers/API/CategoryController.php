@@ -102,7 +102,16 @@ class CategoryController extends APIController
 
         $query->orderBy('sort_order');
 
-        return AttributeOptionResource::collection($query->paginate());
+        return AttributeOptionResource::collection(
+            $query->paginate()->through(function ($option){
+                $count=\DB::table('product_attribute_values')
+                    ->where('attribute_id', $option->attribute_id)
+                    ->where('value', $option->id)
+                    ->count();
+                $option->count = $count;
+                return $option;
+            })
+            );
     }
 
     /**

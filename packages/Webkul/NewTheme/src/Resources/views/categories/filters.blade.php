@@ -220,7 +220,8 @@
                                     class="icon-uncheck peer-checked:icon-check-box text-2xl text-navyBlue"
                                     ></span>
                                     
-                                    <span class="text-sm text-gray-900">@{{ option.name }} (<span v-text="option.count"></span>)</span>
+                                    <span class="text-sm text-gray-900">@{{ option.name }}</span>
+                                    <span class="text-gray-600">(@{{ option.count }})</span>
                                 </label>
                             </li>
                         </template>
