@@ -147,7 +147,7 @@
             <x-slot:header class="px-0 py-2.5 max-sm:!pb-1.5">
                 <div class="flex items-center justify-between">
                     <p class="text-lg font-semibold max-sm:text-base max-sm:font-medium">
-                        @{{ filter.name }}
+                        @{{ filter.name }} (@{{ filter.count }})
                     </p>
                 </div>
             </x-slot>
